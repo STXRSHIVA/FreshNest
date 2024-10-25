@@ -58,6 +58,7 @@ function validateUser (user) {
     name: Joi.string().required(),
     email: Joi.string().required().email(),
     password: Joi.string().required(),
+    userType: Joi.string().valid('admin', 'customer', 'farmer').default('customer'),
     phone: Joi.string().required(),
     location: Joi.object()
       .keys({
@@ -83,7 +84,7 @@ function validateSignUp (req) {
     email: Joi.string().required().email(),
     password: Joi.string().required(),
     phone: Joi.string().required(),
-    userType: Joi.string().default('customer'),
+    userType: Joi.string().valid('admin', 'customer', 'farmer').required().default('customer'),
     location: Joi.object()
       .keys({
         type: Joi.string().valid('Point').default('Point'),
